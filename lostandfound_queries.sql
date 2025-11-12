@@ -196,11 +196,11 @@ DELIMITER ;
 -- 6. USER CREATION & PRIVILEGES
 -- ===========================
 CREATE USER 'student'@'localhost' IDENTIFIED BY 'Pesu@123';
-GRANT SELECT, INSERT, UPDATE, DELETE ON lostandfounddb.user TO 'student'@'localhost';
-GRANT SELECT, INSERT, UPDATE, DELETE ON lostandfounddb.LostItem TO 'student'@'localhost';
-GRANT SELECT, INSERT, UPDATE, DELETE ON lostandfounddb.FoundItem TO 'student'@'localhost';
-GRANT SELECT, INSERT, UPDATE, DELETE ON lostandfounddb.Claim TO 'student'@'localhost';
-GRANT SELECT, INSERT, UPDATE, DELETE ON lostandfounddb.Notification TO 'student'@'localhost';
+GRANT SELECT, INSERT, UPDATE ON lostandfounddb.user TO 'student'@'localhost';
+GRANT SELECT, INSERT, UPDATE ON lostandfounddb.LostItem TO 'student'@'localhost';
+GRANT SELECT, INSERT, UPDATE ON lostandfounddb.FoundItem TO 'student'@'localhost';
+GRANT SELECT, INSERT, UPDATE ON lostandfounddb.Claim TO 'student'@'localhost';
+GRANT SELECT, INSERT, UPDATE ON lostandfounddb.Notification TO 'student'@'localhost';
 GRANT EXECUTE ON PROCEDURE lostandfounddb.AddLostItem TO 'student'@'localhost';
 GRANT EXECUTE ON FUNCTION lostandfounddb.GetTotalClaimsByUser TO 'student'@'localhost';
 
