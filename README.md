@@ -54,3 +54,21 @@ The system is built on five core entities:
 
 ## Authors: 
 Aditya CS, Aadarsh Koushik
+
+## How to Run the Application
+
+## Step 1: Import Database
+
+Use a MySQL client (like MySQL Workbench or the command line) to import the schema and data.
+
+```sql
+SOURCE sql/lostandfound_final.sql;
+```
+## Step 2: Install Dependencies
+pip install mysql-connector-python
+
+## Step 3: Run the GUI
+python src/lostandfound_gui.py
+
+## Conclusion
+This project successfully demonstrates an end-to-end Database Management System integrated with a user-friendly graphical frontend. It fulfills all academic rubric requirements, covering DDL, DML, CRUD operations, triggers, functions, procedures, complex queries, and normalization.
