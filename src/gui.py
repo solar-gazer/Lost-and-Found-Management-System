@@ -121,10 +121,15 @@ def main_app(user_id, role):
             tree.insert("", tk.END, values=row)
 
     def delete_lost_item():
+        if role == "Student":
+            messagebox.showwarning("Access Denied", "Students are not allowed to delete items.")
+            return
+
         selected = tree.focus()
         if not selected:
             messagebox.showwarning("Select", "Select an item to delete!")
             return
+
         lost_id = tree.item(selected)['values'][0]
         cursor.execute("DELETE FROM LostItem WHERE LostItemID=%s", (lost_id,))
         db.commit()
@@ -154,7 +159,6 @@ def main_app(user_id, role):
 
         tk.Button(tab3, text="Approve Claim", command=approve_claim, bg="#27ae60", fg="white").grid(row=1, column=0, columnspan=2, pady=10)
 
-        # JOIN QUERY BUTTON
         def view_approved_claims():
             cursor.execute("""
                 SELECT C.ClaimID, U.Name AS Claimant, F.Title AS FoundItem,
@@ -206,7 +210,6 @@ def main_app(user_id, role):
     entry_uid = tk.Entry(tab5)
     entry_uid.grid(row=0, column=1, padx=10, pady=10)
 
-    # FUNCTION DEMO
     def get_total_claims():
         uid = entry_uid.get()
         cursor.execute("SELECT GetTotalClaimsByUser(%s)", (uid,))
@@ -217,7 +220,6 @@ def main_app(user_id, role):
     tk.Button(tab5, text="🧮 Check Total Claims (FUNCTION)", command=get_total_claims,
               bg="#e67e22", fg="white").grid(row=1, column=0, columnspan=2, pady=10)
 
-    # AGGREGATE QUERY
     def view_category_counts():
         cursor.execute("""
             SELECT Category, COUNT(LostItemID) AS TotalLostItems
@@ -238,7 +240,6 @@ def main_app(user_id, role):
     tk.Button(tab5, text="📊 View Lost Items by Category (AGGREGATE)", command=view_category_counts,
               bg="#16a085", fg="white").grid(row=2, column=0, columnspan=2, pady=10)
 
-    # NESTED QUERY
     def view_pending_users():
         cursor.execute("""
             SELECT Name FROM user
